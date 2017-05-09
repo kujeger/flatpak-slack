@@ -1,0 +1,82 @@
+{
+    "app-id": "com.slack.App",
+    "runtime": "org.gnome.Platform",
+    "runtime-version": "3.24",
+    "sdk": "org.gnome.Sdk",
+    "branch": "master",
+    "command": "slack",
+    "separate-locales": false,
+    "finish-args": [
+        "--share=ipc", "--socket=x11",
+        "--socket=pulseaudio",
+        "--share=network",
+        "--device=dri",
+        "--extra-data=slack.deb:7ecf34f6c433a186469ce44cf3b9bf2eab334e7437f155211a4188e531e632db:50536970::https://downloads.slack-edge.com/linux_releases/slack-desktop-2.6.0-amd64.deb"
+    ],
+    "build-options" : {
+        "cflags": "-O2 -g",
+        "cxxflags": "-O2 -g",
+        "env": {
+            "V": "1"
+        }
+    },
+    "cleanup": ["/include", "/lib/pkgconfig",
+                "/share/pkgconfig", "/share/aclocal",
+                "/man", "/share/man", "/share/gtk-doc",
+                "/share/vala",
+                "*.la", "*.a"],
+    "modules": [
+        {
+            "name": "udev",
+            "config-opts": [ "--disable-hwdb", "--disable-logging", "--disable-gudev",
+                             "--disable-introspection", "--disable-keymap", "--disable-mtd_probe"],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "http://kernel.org/pub/linux/utils/kernel/hotplug/udev-175.tar.bz2",
+                    "sha256": "4c7937fe5a1521316ea571188745b9a00a9fdf314228cffc53a7ba9e5968b7ab"
+                }
+            ]
+        },
+        {
+            "name": "gconf",
+            "config-opts": ["--disable-orbit"],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "http://ftp.gnome.org/pub/GNOME/sources/GConf/3.2/GConf-3.2.6.tar.xz",
+                    "sha256": "1912b91803ab09a5eed34d364bf09fe3a2a9c96751fde03a4e0cfa51a04d784c"
+                }
+            ]
+        },
+        {
+            "name": "libxkbfile",
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://www.x.org/archive/individual/lib/libxkbfile-1.0.9.tar.bz2",
+                    "sha256": "51817e0530961975d9513b773960b4edd275f7d5c72293d5a151ed4f42aeb16a"
+                }
+            ]
+        },
+        {
+            "name": "slack",
+            "no-autogen": true,
+            "sources": [
+                {
+                    "type": "file",
+                    "path": "apply_extra"
+                },
+                {
+                    "type": "file",
+                    "path": "slack.sh"
+                },
+                {
+                    "type": "file",
+                    "path": "slack-Makefile",
+                    "dest-filename": "Makefile"
+                }
+            ]
+        }
+    ]
+}

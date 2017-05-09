@@ -1,0 +1,13 @@
+#!/bin/sh
+ar x slack.deb
+rm -f slack.deb
+tar xf data.tar.xz
+rm -f control.tar.gz data.tar.xz debian-binary
+rm -rf etc
+mv usr/* .
+rmdir usr
+mkdir -p export/share/applications
+sed 's/Icon=.*/Icon=com.slack.App/; s/Exec=\/usr\/bin\/slack/Exec=slack/' share/applications/slack.desktop > export/share/applications/com.slack.App.desktop
+echo StartupWMClass=Slack >> export/share/applications/com.slack.App.desktop
+mkdir -p export/share/icons/hicolor/512x512/apps
+cp share/pixmaps/slack.png export/share/icons/hicolor/512x512/apps/com.slack.App.png
