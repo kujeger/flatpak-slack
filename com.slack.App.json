@@ -11,7 +11,7 @@
         "--socket=pulseaudio",
         "--share=network",
         "--device=dri",
-        "--extra-data=slack.deb:7ecf34f6c433a186469ce44cf3b9bf2eab334e7437f155211a4188e531e632db:50536970::https://downloads.slack-edge.com/linux_releases/slack-desktop-2.6.0-amd64.deb"
+        "--extra-data=slack.deb:a856cb453871a2cea5cde5165902f0a0729b7f3c3d41e32fab17a36defffed07:51458858::https://downloads.slack-edge.com/linux_releases/slack-desktop-2.6.2-amd64.deb"
     ],
     "build-options" : {
         "cflags": "-O2 -g",
