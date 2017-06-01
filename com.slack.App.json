@@ -7,10 +7,12 @@
     "command": "slack",
     "separate-locales": false,
     "finish-args": [
-        "--share=ipc", "--socket=x11",
-        "--socket=pulseaudio",
+        "--share=ipc",
         "--share=network",
+        "--socket=x11",
+        "--socket=pulseaudio",
         "--device=dri",
+        "--talk-name=org.freedesktop.Notifications",
         "--extra-data=slack.deb:a856cb453871a2cea5cde5165902f0a0729b7f3c3d41e32fab17a36defffed07:51458858::https://downloads.slack-edge.com/linux_releases/slack-desktop-2.6.2-amd64.deb"
     ],
     "build-options" : {
